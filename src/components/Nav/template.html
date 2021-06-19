@@ -1,0 +1,14 @@
+<div class="nav">
+  <div
+    class="background-image"
+    :style="{ 
+      left: backgroundLeft + 'px',
+      bottom: backgroundBottom + 'px'
+     }"
+  ></div>
+  <div class="items">
+    <div class="item" v-for="index in len">
+      <img :src="getSrc(index)" />
+    </div>
+  </div>
+</div>

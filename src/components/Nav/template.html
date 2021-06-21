@@ -1,14 +1,29 @@
 <div class="nav">
-  <div
-    class="background-image"
-    :style="{ 
-      left: backgroundLeft + 'px',
-      bottom: backgroundBottom + 'px'
-     }"
-  ></div>
-  <div class="items">
-    <div class="item" v-for="index in len">
-      <img :src="getSrc(index)" />
+  <!-- 根據 index 移動的容器. -->
+  <div class="background-container">
+    <!-- 斜線背景區. -->
+    <div
+      class="background-position"
+      :style="{ 
+        left: backgroundContainerLeft + 'px',
+        bottom: backgroundContainerBottom + 'px'
+      }"
+    >
+      <div class="background"></div>
+    </div>
+    <!-- 菱形圖片區. -->
+    <div class="items">
+      <div
+        class="item"
+        v-for="i in len"
+        :key="i"
+        :style="{marginTop: (i - 1) * 136 * -1 + 'px'}"
+        :data-index="getPad(i, 2, '0')"
+        :class="{active: i - 1 === index}"
+      >
+        <img :src="getSrc(i)" />
+        <div class="mask"></div>
+      </div>
     </div>
   </div>
 </div>

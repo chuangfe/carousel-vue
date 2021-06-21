@@ -54,5 +54,6 @@ html {
   width: 100%;
   height: 50%;
   background-color: #333;
+  position: relative;
 }
 </style>

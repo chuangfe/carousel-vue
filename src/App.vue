@@ -1,19 +1,22 @@
 <template>
   <div id="app">
     <!-- 控制顯示 items nav 的容器. -->
-    <div class="carousel-container isNav">
+    <div class="carousel-container" :class="{ menu: isMenu }">
       <div class="items-container"></div>
-      <Nav />
+      <Menu />
     </div>
   </div>
 </template>
 
 <script>
-import Nav from "./components/Nav/index.vue";
+import Menu from "./components/Menu/index.vue";
 
 export default {
   name: "App",
-  components: { Nav },
+  data() {
+    return { isMenu: true };
+  },
+  components: { Menu },
 };
 </script>
 
@@ -39,13 +42,13 @@ html {
   top: 0px;
 }
 
-// 控制顯示 items nav 的容器.
+// 控制顯示 items menu 的容器.
 .carousel-container {
   width: 100%;
   height: 200%;
   transform: translateY(0%);
 
-  &.isNav {
+  &.menu {
     transform: translateY(-50%);
   }
 }

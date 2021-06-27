@@ -1,0 +1,36 @@
+<div class="menu">
+  <!-- 根據 index 移動的容器. -->
+  <div class="background" :style="{transform: getBackgroundTransform}">
+    <!-- 背景虛線區. -->
+    <div class="dashed" :style="getDashedPosition"></div>
+    <!-- 縮圖區. -->
+    <div class="items">
+      <div
+        class="item"
+        v-for="i in len"
+        :key="i"
+        :style="{marginTop: (i - 1) * 136 * -1 + 'px'}"
+        :class="{active: i - 1 === index}"
+        :data-index="getPad(i, 2, '0')"
+      >
+        <img class="thumbnail" :src="getSrc(i)" />
+        <div class="mask"></div>
+      </div>
+    </div>
+  </div>
+  <!-- 文字容器 -->
+  <div class="content" :style="getContentTransform">
+    <div
+      class="item"
+      v-for="(item, i) of contents"
+      :class="{active: i === index}"
+    >
+      <h3>
+        <a class="title" href="javascript:;" @click="titleClickHandler(i)"
+          >{{item.title}}</a
+        >
+      </h3>
+      <p class="text">{{item.text}}</p>
+    </div>
+  </div>
+</div>

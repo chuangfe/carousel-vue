@@ -1,0 +1,144 @@
+// 不能移動, 純粹作為定位的容器.
+.menu {
+  width: 100%;
+  height: 50%;
+  background-color: rgb(114, 107, 107);
+  position: relative;
+}
+
+// 背景移動的目標, 同時移動 background-dashed 與 items.
+.background {
+  width: 100%;
+  height: 100%;
+  transform: translate(0px, 0px);
+  transition: transform 0.4s ease-out;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  // 虛線.
+  .dashed {
+    width: 500%;
+    height: 500%;
+    background: url("../../../public/images/nav/nav-dashed.png") left bottom
+      repeat;
+    background-size: 270px;
+    transform: translateX(-138px);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+  }
+
+  // item 容器.
+  .items {
+    display: flex;
+    transform: translate(0px, 0px);
+    position: absolute;
+    left: calc(50% - 120px);
+    top: calc(50% - 238px - 50px);
+  }
+
+  // 單個 item.
+  .item {
+    margin-left: -106px;
+    width: 239px;
+    height: 238px;
+    position: relative;
+    overflow: hidden;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    // 左上角黑色三角形.
+    &::before {
+      content: "";
+      display: block;
+      border: 105px solid transparent;
+      border-right-color: #000;
+      transform: rotate(45deg);
+      position: absolute;
+      left: -50%;
+      top: -50%;
+      z-index: 1;
+    }
+
+    // 數字.
+    &::after {
+      content: attr(data-index);
+      display: block;
+      font-size: 1.5rem;
+      color: #2e2e2e;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+    }
+
+    &.active::after {
+      color: #fff;
+    }
+
+    &.active .mask {
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  // item 縮圖.
+  .thumbnail {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+
+  // 菱形灰色遮罩.
+  .mask {
+    width: 102.5%;
+    height: 102.5%;
+    background: url("../../../public/images/nav/nav-sprite.png") center center
+      no-repeat;
+    background-size: contain;
+    transform: translate(0%, 0%);
+    transition: transform 0.4s ease-out;
+    position: absolute;
+    left: calc(50% - 122px);
+    top: calc(50% - 121px);
+  }
+}
+
+// 文字區域.
+.content {
+  display: flex;
+  transform: translateX(0px);
+  transition: transform 0.4s ease-out;
+  position: absolute;
+  left: calc(50% - 15rem);
+  top: calc(50% + 3rem);
+
+  .item {
+    width: 30rem;
+    text-align: center;
+
+    &.active .title {
+      color: #fff;
+    }
+  }
+
+  // 標題.
+  .title {
+    display: block;
+    font-size: 2.125rem;
+    color: #383838;
+  }
+
+  // 說明文字.
+  .text {
+    padding-top: 1.875rem;
+    font-size: 1rem;
+    font-style: italic;
+    color: #686868;
+  }
+}

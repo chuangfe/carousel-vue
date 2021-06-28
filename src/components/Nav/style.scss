@@ -1,0 +1,65 @@
+.nav {
+  width: 100%;
+  font-size: 0px;
+  text-align: center;
+  background-color: #000;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+}
+
+.navigator-container {
+  display: inline-block;
+  position: relative;
+
+  .navigator {
+    width: 30px;
+    height: 59px;
+    border-left: 1px solid #262626;
+    border-top: 1px solid transparent;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      width: 1px;
+      height: 1px;
+      content: "";
+      display: block;
+      background-color: #fff;
+      position: absolute;
+      left: -1px;
+      top: -1px;
+    }
+
+    &:nth-last-child(2) {
+      border-right: 1px solid #262626;
+
+      &::after {
+        width: 1px;
+        height: 1px;
+        content: "";
+        display: block;
+        background-color: #fff;
+        position: absolute;
+        right: -1px;
+        top: -1px;
+      }
+    }
+
+    &.active {
+      border-top-color: #fff;
+    }
+  }
+
+  .navigator-drag {
+    width: 30px;
+    height: 58px;
+    background-color: #fff;
+    transition: transform 0.4s ease-out;
+    position: absolute;
+    left: 1px;
+    top: 2px;
+    cursor: pointer;
+  }
+}

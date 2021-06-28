@@ -1,14 +1,14 @@
 <script>
 import debounce from "../../assets/script/debounce";
 
+// 保存 dom 的變數.
 let items;
 
 export default {
   name: "Menu",
+  props: ["index", "isActive", "isMenu"],
   data() {
     return {
-      index: 0,
-      len: 14,
       itemsLeft: 0,
       itemsBottom: 0,
       contents: [
@@ -96,6 +96,7 @@ export default {
       };
     },
     getContentTransform() {
+      // 30rem 是每個 item 的寬度.
       let x = this.index * 30 * -1 + "rem";
       return {
         transform: "translateX(" + x + ")",
@@ -115,10 +116,12 @@ export default {
     getSrc(num) {
       const i = this.getPad(num, 2, "0");
       // vue 綁定的 src, 需要以 dist 的目錄為基準.
-      return "./images/nav/nav-item-" + i + ".png";
+      return "./images/menu/menu-item-" + i + ".png";
     },
-    titleClickHandler(num) {
-      this.index = num;
+    titleClickHandler(i) {
+      this.$emit("setIndex", i);
+      this.$emit("setActive", i);
+      this.$emit("setMenu", false);
     },
     resizeHandler() {
       // 獲取 items 的 offsetLeft offsetBottom.

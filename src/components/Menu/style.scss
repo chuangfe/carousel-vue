@@ -2,8 +2,8 @@
 .menu {
   width: 100%;
   height: 50%;
-  background-color: rgb(114, 107, 107);
   position: relative;
+  overflow: hidden;
 }
 
 // 背景移動的目標, 同時移動 background-dashed 與 items.
@@ -20,7 +20,7 @@
   .dashed {
     width: 500%;
     height: 500%;
-    background: url("../../../public/images/nav/nav-dashed.png") left bottom
+    background: url("../../../public/images/menu/menu-dashed.png") left bottom
       repeat;
     background-size: 270px;
     transform: translateX(-138px);
@@ -98,7 +98,7 @@
   .mask {
     width: 102.5%;
     height: 102.5%;
-    background: url("../../../public/images/nav/nav-sprite.png") center center
+    background: url("../../../public/images/menu/menu-sprite.png") center center
       no-repeat;
     background-size: contain;
     transform: translate(0%, 0%);

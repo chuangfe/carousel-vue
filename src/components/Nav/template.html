@@ -1,0 +1,15 @@
+<div class="nav">
+  <div class="navigator-container">
+    <div
+      class="navigator"
+      v-for="(n, i) in 14"
+      :class="{active: i === isActive}"
+      @mouseenter="navigatorMouseenterHandler(i)"
+    ></div>
+    <div
+      class="navigator-drag"
+      :style="getDragLeft"
+      @click="dragClickHandler"
+    ></div>
+  </div>
+</div>

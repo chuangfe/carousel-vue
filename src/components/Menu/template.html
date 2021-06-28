@@ -7,13 +7,13 @@
     <div class="items">
       <div
         class="item"
-        v-for="i in len"
+        v-for="(item, i) in contents"
         :key="i"
-        :style="{marginTop: (i - 1) * 136 * -1 + 'px'}"
-        :class="{active: i - 1 === index}"
-        :data-index="getPad(i, 2, '0')"
+        :style="{marginTop: i * 136 * -1 + 'px'}"
+        :class="{active: i === index}"
+        :data-index="getPad(i + 1, 2, '0')"
       >
-        <img class="thumbnail" :src="getSrc(i)" />
+        <img class="thumbnail" :src="getSrc(i + 1)" />
         <div class="mask"></div>
       </div>
     </div>

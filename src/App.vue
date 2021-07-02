@@ -4,8 +4,8 @@
     <div class="carousel-container" :class="{ menu: isMenu }">
       <div class="items-container"></div>
       <Menu
-        :index="calcIndex"
-        :isActive="calcActive"
+        :index="index"
+        :isActive="isActive"
         :isMenu="isMenu"
         @setIndex="setIndexHandler"
         @setActive="setActiveHandler"
@@ -13,8 +13,8 @@
       />
     </div>
     <Nav
-      :index="calcIndex"
-      :isActive="calcActive"
+      :index="index"
+      :isActive="isActive"
       :isMenu="isMenu"
       @setIndex="setIndexHandler"
       @setActive="setActiveHandler"
@@ -31,32 +31,40 @@ export default {
   name: "App",
   data() {
     return {
-      // 這是給 Menu Nav 使用的.
+      // menu nav 使用的索引.
       index: 0,
-      // 當前播放的 component.
+      // nav navigator 的 active.
       isActive: 0,
+
+      // 當前播放的 item.
+      isPlay: 0,
+
       // 當前畫面的位置.
       isMenu: true,
     };
   },
   computed: {
+    // items 移動的索引.
     calcIndex() {
-      return this.index < 2 ? 0 : this.index - 1;
-    },
-    calcActive() {
-      return this.isActive < 2 ? 0 : this.isActive - 1;
+      return this.index + 1;
     },
   },
   methods: {
-    /**
-     * 給 menu nav 使用的事件, i 是來自 menu nav 的索引, 而 items 的 0 是 load component, menu nav 的 0 是 items 的 1 component, 故從 component 取值的時候需要 + 1, 才不會有誤差.
-     */
+    // 給 menu nav 使用的事件.
     setIndexHandler(i) {
-      this.index = i + 1;
+      this.index = i;
     },
     // 給 menu nav 使用的事件.
     setActiveHandler(i) {
-      this.isActive = i + 1;
+      this.isActive = i;
+    },
+    // 只有在 transitionend 事件才會執行.
+    setPlayHandler() {
+      // 畫面在 menu 時阻擋事件.
+      if (!this.isMenu) return false;
+
+      // items 的 length 比 navigator 多一個, 所以需要修改.
+      this.isPlay = this.isActive + 1;
     },
     // 給 menu nav 使用的事件.
     setMenuHandler(b) {
@@ -104,7 +112,7 @@ html {
 .items-container {
   width: 100%;
   height: 50%;
-  background-color: red;
+  background-color: #000;
   position: relative;
 }
 </style>

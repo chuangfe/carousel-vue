@@ -1,4 +1,7 @@
-<div class="nav">
+<div class="nav" :class="{menu: isMenu}">
+  <div class="logo">
+    <img src="../../../public/images/nav/nav-logo.png" />
+  </div>
   <div class="navigator-container">
     <div
       class="navigator"
@@ -11,5 +14,56 @@
       :style="getDragLeft"
       @click="dragClickHandler"
     ></div>
+  </div>
+
+  <div class="social">
+    <ul>
+      <li>
+        <a href="javascript:;">
+          <img
+            class="facebook"
+            src="../../../public/images/nav/nav-facebook.png"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="javascript:;">
+          <img
+            class="facebook"
+            src="../../../public/images/nav/nav-twitter.png"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="javascript:;">
+          <img
+            class="facebook"
+            src="../../../public/images/nav/nav-sound.png"
+          />
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="credit">
+    <div class="content">
+      <p>
+        <span>Production:</span
+        ><a href="http://blacknegative.com/" target="_blank">Blacknegative</a>
+      </p>
+      <p><span>Design:</span>Dilshan Arukatti</p>
+      <p>
+        <span>Development:</span>
+        <a href="http://www.sylvaintran.fr" target="_blank">Sylvain Tran</a>
+      </p>
+    </div>
+    <p class="title">Credits</p>
+  </div>
+
+  <div class="mask">
+    <div class="gray" @click="$emit('setMenu', true)"></div>
+    <div class="menu" @click="$emit('setMenu', true)">
+      <img src="../../../public/images/nav/nav-menu.png" />
+    </div>
   </div>
 </div>

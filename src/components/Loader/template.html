@@ -1,0 +1,26 @@
+<section class="module loader">
+  <img
+    src="../../../public/images/loader/loader-circle.png"
+    alt="circle"
+    class="position-center circle"
+  />
+  <div class="position-center title">
+    <div class="mask"></div>
+    <img
+      src="../../../public/images/loader/loader-title.png"
+      alt="blacknegative"
+    />
+  </div>
+  <img
+    src="../../../public/images/loader/loader-tutorial-50milliseconds.gif"
+    alt="tutorial"
+    class="position-center tutorial"
+    v-show="isLoaded"
+  />
+  <img
+    src="../../../public/images/loader/loader-text.png"
+    alt="text"
+    class="position-center text"
+    v-show="isLoaded"
+  />
+</section>

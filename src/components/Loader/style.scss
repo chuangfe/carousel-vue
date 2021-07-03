@@ -1,0 +1,47 @@
+.loader {
+  // 元素置中.
+  .position-center {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  // 標題.
+  .title {
+    width: 226px;
+    height: 28px;
+    overflow: hidden;
+
+    // 底部白色背景, 圖片.
+    .mask,
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .mask {
+      background-color: #fff;
+      transform: translateX(0%);
+      position: absolute;
+      right: 100%;
+      top: 0px;
+    }
+  }
+
+  // 拖曳 gif.
+  .tutorial {
+    margin-top: 250px;
+    width: 226px;
+    height: 68px;
+  }
+
+  // 文字.
+  .text {
+    margin-top: 310px;
+    width: 163px;
+    height: 7px;
+    transform: translate(-82px, -4px);
+  }
+}

@@ -1,7 +1,7 @@
 <script>
 export default {
   name: "Loader",
-  props: ["isLoaded"],
+  props: ["isLoaded", "isPlay"],
 };
 </script>
 

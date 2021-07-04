@@ -119,9 +119,9 @@ export default {
       return "./images/menu/menu-item-" + i + ".png";
     },
     titleClickHandler(i) {
+      this.$emit("setMenu", false);
       this.$emit("setIndex", i);
       this.$emit("setActive", i);
-      this.$emit("setMenu", false);
     },
     resizeHandler() {
       // 獲取 items 的 offsetLeft offsetBottom.

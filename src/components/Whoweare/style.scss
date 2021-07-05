@@ -1,0 +1,85 @@
+.whoweare {
+  display: flex;
+  // 垂直排列.
+  flex-direction: column;
+  // 主軸置中.
+  justify-content: center;
+
+  background: url("../../../public/images/whoweare/whoweare-background.jpg")
+    center center no-repeat;
+  background-size: cover;
+}
+
+.introduce-container {
+  padding: 10px 0;
+  width: 100%;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+
+  &.dashed {
+    background: url("../../../public/images/whoweare/whoweare-dashed.png") left
+      bottom repeat-x;
+  }
+
+  &:hover .mask {
+    margin: 10px 0px;
+    padding: 40px 0;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  &.active {
+    cursor: url("../../../public/images/whoweare/whoweare-cursor-close.png") 16
+        16,
+      auto;
+
+    .mask {
+      margin: 10px 0px;
+      padding: 100px 0;
+      background-color: rgba(0, 0, 0, 1);
+    }
+
+    .title {
+      display: none;
+    }
+
+    .content {
+      display: block;
+    }
+  }
+}
+
+.mask {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  transition: all 0.4s ease-out;
+  display: flex;
+  // 主軸置中.
+  justify-content: center;
+}
+
+.title {
+  font-size: 32px;
+  font-family: "GeosansLightRegular";
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  color: #fff;
+}
+
+.content {
+  font-size: 16px;
+  color: #bfbdc0;
+  line-height: 22px;
+  display: none;
+}
+
+.text {
+  width: 158px;
+  height: 32px;
+  transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+}

@@ -1,0 +1,51 @@
+<section class="module whoweare" :class="{play: isPlay}">
+  <div
+    class="introduce-container dashed"
+    :class="{active: isActive === 0}"
+    @click="introduceContainerClickHandler(0)"
+    @mouseleave="introduceContainerMouseleaveHandler"
+  >
+    <div class="mask">
+      <h3 class="title">Telling</h3>
+      <p class="content">
+        We seek nothing less than to be a source of inspiration, revealing your
+        true ambitions.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="introduce-container dashed"
+    :class="{active: isActive === 1}"
+    @click="introduceContainerClickHandler(1)"
+    @mouseleave="introduceContainerMouseleaveHandler"
+  >
+    <div class="mask">
+      <h3 class="title">Fascinating</h3>
+      <p class="content">
+        We deliver nothing less than incredible individuals, with the
+        distinctive ability to imagine, create and innovate.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="introduce-container"
+    :class="{active: isActive === 2}"
+    @click="introduceContainerClickHandler(2)"
+    @mouseleave="introduceContainerMouseleaveHandler"
+  >
+    <div class="mask">
+      <h3 class="title">Stories</h3>
+      <p class="content">
+        We are directors, motion designers, photographers, web designers,
+        developers, sound designers and we give you nothing less than the most
+        beautiful ways to tell your story.
+      </p>
+    </div>
+  </div>
+
+  <div class="text">
+    <img src="../../../public/images/whoweare/whoweare-text.png" alt="text" />
+  </div>
+</section>

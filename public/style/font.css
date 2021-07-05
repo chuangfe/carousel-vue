@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "GeosansLightRegular";
+  src: url("../fonts/geosanslight/geosanslight-webfont.eot");
+  src: url("../fonts/geosanslight/geosanslight-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/geosanslight/geosanslight-webfont.woff") format("woff"),
+    url("../fonts/geosanslight/geosanslight-webfont.ttf") format("truetype"),
+    url("../fonts/geosanslight/geosanslight-webfont.svg#GeosansLightRegular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AkzidenzGroteskBQMedium";
+  src: url("../fonts/akzidenzgrotesk/akzidenzgrotesk-webfont.eot");
+  src: url("../fonts/akzidenzgrotesk/akzidenzgrotesk-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/akzidenzgrotesk/akzidenzgrotesk-webfont.woff") format("woff"),
+    url("../fonts/akzidenzgrotesk/akzidenzgrotesk-webfont.ttf")
+      format("truetype"),
+    url("../fonts/akzidenzgrotesk/akzidenzgrotesk-webfont.svg#AkzidenzGroteskBQMediumRegular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

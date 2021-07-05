@@ -13,8 +13,8 @@
         @mousedown="itemsContainerMousedown($event)"
         @transitionend="itemsContainerTransitionend($event)"
       >
-        <Loader :isLoaded="isLoaded" :isPlay="isPlay" />
-        <div class="module">whoweare</div>
+        <Loader :isLoaded="isLoaded" :isPlay="isPlay === 0" />
+        <Whoweare :isPlay="isPlay === 1" />
         <div class="module">ralphlauren</div>
         <div class="module">bose</div>
         <div class="module">bullittagency</div>
@@ -56,6 +56,7 @@ import Nav from "./components/Nav/index.vue";
 
 import Loader from "./components/Loader/index.vue";
 import LoaderHandler from "./components/Loader/LoaderHandler";
+import Whoweare from "./components/Whoweare/index.vue";
 
 let carouselContainer, itemsContainer;
 
@@ -79,10 +80,15 @@ export default {
       // 離開 loader 頁面.
       isLoaderLeave: false,
 
+      // items-container 滑鼠左鍵按下時的 x 座標.
       itemsContainerMousedownX: 0,
+      // items-container 滑移動的距離.
       itemsContainerMousemoveX: 0,
+      // items-container 當前的 offsetLeft.
       itemsContainerOffsetLeft: 0,
+      // items-container 需要移動到的 left.
       itemsContainerLeft: 0,
+      // items-container 是否有 transition 動畫.
       isTransition: false,
     };
   },
@@ -119,24 +125,10 @@ export default {
       this.itemsContainerLeft =
         // 等於 0, 代表無拖曳, 拖曳事件結束, 不是通過拖曳移動 item-container.
         this.itemsContainerMousemoveX === 0
-          ? active * -100 + "vw"
+          ? active * -100 + "%"
           : this.itemsContainerOffsetLeft +
             this.itemsContainerMousemoveX +
             "px";
-    },
-    // item-container 移動完後執行.
-    itemsContainerTransitionend(e) {
-      // 事件函式非目標觸發, 禁止執行函式.
-      if (e.target !== itemsContainer) return false;
-      // 未離開 loader 頁面, 禁止執行函式.
-      if (!this.isLoaderLeave) return false;
-      // 執行動畫後未切換頁面, 禁止執行函式.
-      if (this.isPlay === this.calcActive) return false;
-
-      // 移除動畫.
-      this.isTransition = false;
-      // 切換 item 的動畫.
-      this.setPlayHandler();
     },
     // item-container 滑鼠左鍵按下事件.
     itemsContainerMousedown(e) {
@@ -188,20 +180,44 @@ export default {
       // 設置 item-container left 樣式.
       this.setItemsContainerLeft();
     },
+    // item-container 移動完後執行.
+    itemsContainerTransitionend(e) {
+      if (
+        // 事件函式非目標觸發, 禁止執行函式.
+        e.target !== itemsContainer ||
+        // 未離開 loader 頁面, 禁止執行函式.
+        !this.isLoaderLeave ||
+        // 執行動畫後未切換頁面, 禁止執行函式.
+        this.isPlay === this.calcActive
+      )
+        return false;
+
+      // 移除動畫.
+      this.isTransition = false;
+      // 切換 item 的動畫.
+      this.setPlayHandler();
+    },
     // carousel-container transitionend 事件, 就是畫面上下切換.
     carouselContainerTransitionend(e) {
-      // 事件函式非目標觸發, 禁止執行函式.
-      if (e.target !== carouselContainer) return false;
-      // 畫面在 menu, 禁止執行函式.
-      if (this.isMenu) return false;
-      // 執行動畫後未切換頁面, 禁止執行函式.
-      if (this.isPlay === this.calcActive) return false;
+      if (
+        // 事件函式非目標觸發, 禁止執行函式.
+        e.target !== carouselContainer ||
+        // 畫面在 menu, 禁止執行函式.
+        this.isMenu ||
+        // 執行動畫後未切換頁面, 禁止執行函式.
+        this.isPlay === this.calcActive
+      )
+        return false;
 
       this.setPlayHandler();
     },
   },
-  components: { Menu, Nav, Loader },
+  components: { Menu, Nav, Loader, Whoweare },
   mounted() {
+    // 儲存 dom 變數, 使用在 transitionend 事件的判斷目標.
+    carouselContainer = this.$el.querySelector(".carousel-container");
+    itemsContainer = this.$el.querySelector(".items-container");
+
     // 假的讀取進度.
     const loaderMask = this.$el.querySelector(".loader .mask");
     const images = Array.from(this.$el.querySelectorAll("img"));
@@ -215,9 +231,6 @@ export default {
         if (num >= 100) this.isLoaded = true;
       },
     });
-
-    carouselContainer = this.$el.querySelector(".carousel-container");
-    itemsContainer = this.$el.querySelector(".items-container");
   },
 };
 </script>
@@ -231,8 +244,6 @@ body,
 }
 
 html {
-  // min-width: 800px;
-  // min-height: 600px;
   font-size: 16px;
   line-height: 1.5rem;
   overflow: hidden;
@@ -258,9 +269,8 @@ html {
 }
 
 .items-container {
-  width: 1500vw;
+  width: 1500%;
   height: 50%;
-  transform: translateX(0vw);
   position: relative;
   display: flex;
   flex-wrap: nowrap;
@@ -270,7 +280,7 @@ html {
   }
 
   .module {
-    width: 100vw;
+    width: calc(100% / 15);
     height: 100%;
     color: #fff;
     position: relative;

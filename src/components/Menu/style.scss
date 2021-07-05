@@ -43,6 +43,7 @@
     margin-left: -106px;
     width: 239px;
     height: 238px;
+    font-family: "GeosansLightRegular";
     position: relative;
     overflow: hidden;
 
@@ -131,14 +132,18 @@
   .title {
     display: block;
     font-size: 2.125rem;
+    font-family: "GeosansLightRegular";
+    letter-spacing: 9px;
     color: #383838;
   }
 
   // 說明文字.
   .text {
     padding-top: 1.875rem;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-style: italic;
+    font-family: "Georgia";
+    letter-spacing: 2px;
     color: #686868;
   }
 }

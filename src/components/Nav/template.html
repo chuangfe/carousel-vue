@@ -8,6 +8,7 @@
       v-for="(n, i) in 14"
       :class="{active: i === isActive}"
       @mouseenter="navigatorMouseenterHandler(i)"
+      @click="dragClickHandler"
     ></div>
     <div
       class="navigator-drag"

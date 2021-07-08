@@ -15,7 +15,7 @@
       >
         <Loader :isLoaded="isLoaded" :isPlay="isPlay === 0" />
         <Whoweare :isPlay="isPlay === 1" />
-        <div class="module">ralphlauren</div>
+        <Ralphlauren :isPlay="isPlay === 2" />
         <div class="module">bose</div>
         <div class="module">bullittagency</div>
         <div class="module">adisseo</div>
@@ -45,7 +45,7 @@
       @setIndex="setIndexHandler"
       @setActive="setActiveHandler"
       @setMenu="setMenuHandler"
-      v-show="isLoaderLeave"
+      v-show="isPlay > 0"
     />
   </div>
 </template>
@@ -57,6 +57,7 @@ import Nav from "./components/Nav/index.vue";
 import Loader from "./components/Loader/index.vue";
 import LoaderHandler from "./components/Loader/LoaderHandler";
 import Whoweare from "./components/Whoweare/index.vue";
+import Ralphlauren from "./components/Ralphlauren/index.vue";
 
 let carouselContainer, itemsContainer;
 
@@ -186,16 +187,17 @@ export default {
         // 事件函式非目標觸發, 禁止執行函式.
         e.target !== itemsContainer ||
         // 未離開 loader 頁面, 禁止執行函式.
-        !this.isLoaderLeave ||
-        // 執行動畫後未切換頁面, 禁止執行函式.
-        this.isPlay === this.calcActive
+        !this.isLoaderLeave
       )
         return false;
 
       // 移除動畫.
       this.isTransition = false;
-      // 切換 item 的動畫.
-      this.setPlayHandler();
+
+      // 有確實切換畫面.
+      if (this.isPlay !== this.calcActive)
+        // 切換 item 的動畫.
+        this.setPlayHandler();
     },
     // carousel-container transitionend 事件, 就是畫面上下切換.
     carouselContainerTransitionend(e) {
@@ -212,7 +214,7 @@ export default {
       this.setPlayHandler();
     },
   },
-  components: { Menu, Nav, Loader, Whoweare },
+  components: { Menu, Nav, Loader, Whoweare, Ralphlauren },
   mounted() {
     // 儲存 dom 變數, 使用在 transitionend 事件的判斷目標.
     carouselContainer = this.$el.querySelector(".carousel-container");
@@ -221,6 +223,12 @@ export default {
     // 假的讀取進度.
     const loaderMask = this.$el.querySelector(".loader .mask");
     const images = Array.from(this.$el.querySelectorAll("img"));
+
+    // chrome 防止圖片拖放.
+    images.forEach((img) => {
+      img.draggable = false;
+    });
+
     LoaderHandler.load({
       elements: images,
       callBack: (percentage) => {

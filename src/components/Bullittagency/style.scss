@@ -1,0 +1,140 @@
+.bullittagency {
+  background: url("../../../public/images/bullittagency/bullittagency-background.jpg")
+    center center no-repeat;
+  background-size: cover;
+
+  .position-center {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  .text {
+    margin-top: -60px;
+    width: 484px;
+    height: 194px;
+  }
+
+  .launch-container {
+    margin-top: 120px;
+    width: 392px;
+    height: 50px;
+    position: relative;
+    cursor: pointer;
+
+    .img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
+
+    .launch {
+      display: block;
+    }
+
+    .launch-hover {
+      display: none;
+    }
+
+    &:hover {
+      .launch {
+        display: none;
+      }
+
+      .launch-hover {
+        display: block;
+      }
+    }
+  }
+
+  .mask {
+    font-size: 0px;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.1s ease-out 1.9s;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: none;
+
+    &.on {
+      transition: none;
+      opacity: 1;
+
+      .square {
+        transition: opacity 0s ease-out 1s !important;
+        opacity: 1;
+
+        &:hover {
+          transition: opacity 0s ease-out !important;
+          opacity: 0;
+        }
+      }
+    }
+
+    &.block {
+      display: block;
+    }
+  }
+
+  .square {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background: #0f1012 center center no-repeat;
+    opacity: 0;
+    cursor: pointer;
+
+    &.square-wetryto {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-wetryto.jpg");
+    }
+    &.square-a {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-a.jpg");
+    }
+    &.square-b-bold {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-b-bold.jpg");
+    }
+    &.square-c {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-c.jpg");
+    }
+    &.square-e {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-e.jpg");
+    }
+    &.square-e-bold {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-e-bold.jpg");
+    }
+    &.square-h {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-h.jpg");
+    }
+    &.square-k {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-k.jpg");
+    }
+    &.square-l {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-l.jpg");
+    }
+    &.square-line {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-line.jpg");
+    }
+    &.square-m {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-m.jpg");
+    }
+    &.square-p {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-p.jpg");
+    }
+    &.square-r-bold {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-r-bold.jpg");
+    }
+    &.square-t {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-t.jpg");
+    }
+    &.square-t-bold {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-t-bold.jpg");
+    }
+    &.square-w-bold {
+      background-image: url("../../../public/images/bullittagency/bullittagency-square-w-bold.jpg");
+    }
+  }
+}

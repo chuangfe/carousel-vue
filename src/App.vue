@@ -16,8 +16,8 @@
         <Loader :isLoaded="isLoaded" :isPlay="isPlay === 0" />
         <Whoweare :isPlay="isPlay === 1" />
         <Ralphlauren :isPlay="isPlay === 2" />
-        <div class="module">bose</div>
-        <div class="module">bullittagency</div>
+        <Bose :isPlay="isPlay === 3" />
+        <Bullittagency :isPlay="isPlay === 4" />
         <div class="module">adisseo</div>
         <div class="module">kindy</div>
         <div class="module">sanofi</div>
@@ -58,6 +58,8 @@ import Loader from "./components/Loader/index.vue";
 import LoaderHandler from "./components/Loader/LoaderHandler";
 import Whoweare from "./components/Whoweare/index.vue";
 import Ralphlauren from "./components/Ralphlauren/index.vue";
+import Bose from "./components/Bose/index.vue";
+import Bullittagency from "./components/Bullittagency/index.vue";
 
 let carouselContainer, itemsContainer;
 
@@ -214,7 +216,7 @@ export default {
       this.setPlayHandler();
     },
   },
-  components: { Menu, Nav, Loader, Whoweare, Ralphlauren },
+  components: { Menu, Nav, Loader, Whoweare, Ralphlauren, Bose, Bullittagency },
   mounted() {
     // 儲存 dom 變數, 使用在 transitionend 事件的判斷目標.
     carouselContainer = this.$el.querySelector(".carousel-container");

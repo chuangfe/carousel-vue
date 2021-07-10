@@ -1,0 +1,35 @@
+<section class="module bullittagency" :class="{play: isPlay}">
+  <div class="position-center text">
+    <img
+      src="../../../public/images/bullittagency/bullittagency-text.png"
+      alt="text"
+    />
+  </div>
+
+  <div
+    class="position-center launch-container"
+    @click="launchContainerClickHandler"
+  >
+    <img
+      src="../../../public/images/bullittagency/bullittagency-launch.png"
+      alt="launch"
+      class="launch"
+    />
+    <img
+      src="../../../public/images/bullittagency/bullittagency-launch-hover.png"
+      alt="launch"
+      class="launch-hover"
+    />
+  </div>
+
+  <div
+    class="mask"
+    :class="{on: isOn, block: isBlock}"
+    :style="{
+      width: maskWidth,
+      height: maskHeight,
+    }"
+    @click="maskClickHandler"
+    @transitionend="maskTransitionendHandler($event)"
+  ></div>
+</section>

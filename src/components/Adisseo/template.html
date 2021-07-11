@@ -1,0 +1,38 @@
+<section class="module adisseo" :class="{top: isTop}">
+  <div class="background"></div>
+
+  <div class="content-container">
+    <div class="launch-container">
+      <div class="launch" @click="isTop = false;">
+        <img
+          src="../../../public/images/adisseo/adisseo-launch.png"
+          alt="launch"
+        />
+      </div>
+    </div>
+
+    <div class="separation">
+      <div class="sprite-container" @click="isTop = true;">
+        <img
+          src="../../../public/images/adisseo/adisseo-sprite-50milliseconds.gif"
+          alt="sprite"
+          class="sprite"
+        />
+      </div>
+
+      <div class="content">
+        <img
+          src="../../../public/images/adisseo/adisseo-content.png"
+          alt="content"
+        />
+      </div>
+
+      <div class="casestudy">
+        <img
+          src="../../../public/images/adisseo/adisseo-casestudy.png"
+          alt="casestudy"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -30,6 +30,6 @@
       height: maskHeight,
     }"
     @click="maskClickHandler"
-    @transitionend="maskTransitionendHandler($event)"
+    @transitionend.self="maskTransitionendHandler($event)"
   ></div>
 </section>

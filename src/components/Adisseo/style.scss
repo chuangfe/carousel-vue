@@ -1,0 +1,123 @@
+.adisseo {
+  &.top {
+    .background {
+      bottom: -10%;
+    }
+
+    .content-container {
+      bottom: -100%;
+    }
+  }
+}
+
+// 背景.
+.background {
+  width: 100%;
+  height: 110%;
+  background: url("../../../public/images/adisseo/adisseo-background.jpg")
+    center center no-repeat;
+  background-size: cover;
+  transition: bottom 1s ease-out;
+  position: absolute;
+  left: 0px;
+  bottom: 0%;
+}
+
+// 內容的定位基準.
+.content-container {
+  width: 400px;
+  height: 200%;
+  transition: bottom 1s ease-out;
+  position: absolute;
+  left: 12%;
+  bottom: 0%;
+
+  .launch-container {
+    width: 100px;
+    height: 100px;
+    background: url("../../../public/images/adisseo/adisseo-separation.png") top
+      center repeat-y;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+
+    .launch {
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      position: absolute;
+      left: 0px;
+      top: 100%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #959595;
+      }
+    }
+  }
+}
+
+// 虛線容器.
+.separation {
+  padding-bottom: 150px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50%;
+  background: url("../../../public/images/adisseo/adisseo-separation.png") left
+    center repeat-y;
+  background-clip: content-box;
+  position: absolute;
+  left: 0px;
+  top: 25%;
+
+  // 圓圈
+  .sprite-container {
+    width: 140px;
+    height: 140px;
+    border: 3px solid #959595;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 4px;
+    bottom: 0px;
+    cursor: pointer;
+
+    // 讓 gif 置中.
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      border-color: #fff;
+      background-color: #fff;
+    }
+
+    // gif 牛.
+    .sprite {
+      width: 100px;
+      height: 55px;
+      transform: translate(4px, 4px);
+    }
+  }
+
+  // 下方文字內容.
+  .content {
+    width: 237px;
+    height: 77px;
+    transform: translate(-50%, 100%);
+    position: absolute;
+    left: 50px;
+    bottom: -40px;
+  }
+
+  // 上方文字內容.
+  .casestudy {
+    width: 378px;
+    height: 205px;
+    transform: translateY(-75%);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+}

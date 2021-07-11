@@ -195,8 +195,7 @@ export default {
       this.isOn = false;
     },
 
-    maskTransitionendHandler(e) {
-      if (e.target !== mask) return false;
+    maskTransitionendHandler() {
       this.isBlock = false;
     },
 

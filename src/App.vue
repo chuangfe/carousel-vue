@@ -4,21 +4,21 @@
     <div
       class="carousel-container"
       :class="{ menu: isMenu }"
-      @transitionend="carouselContainerTransitionend($event)"
+      @transitionend.self="carouselContainerTransitionend"
     >
       <div
         class="items-container"
         :class="{ transition: isTransition }"
         :style="{ left: itemsContainerLeft }"
         @mousedown="itemsContainerMousedown($event)"
-        @transitionend="itemsContainerTransitionend($event)"
+        @transitionend.self="itemsContainerTransitionend"
       >
         <Loader :isLoaded="isLoaded" :isPlay="isPlay === 0" />
         <Whoweare :isPlay="isPlay === 1" />
         <Ralphlauren :isPlay="isPlay === 2" />
         <Bose :isPlay="isPlay === 3" />
         <Bullittagency :isPlay="isPlay === 4" />
-        <div class="module">adisseo</div>
+        <Adisseo :isPlay="isPlay === 5" />
         <div class="module">kindy</div>
         <div class="module">sanofi</div>
         <div class="module">news</div>
@@ -60,8 +60,9 @@ import Whoweare from "./components/Whoweare/index.vue";
 import Ralphlauren from "./components/Ralphlauren/index.vue";
 import Bose from "./components/Bose/index.vue";
 import Bullittagency from "./components/Bullittagency/index.vue";
+import Adisseo from "./components/Adisseo/index.vue";
 
-let carouselContainer, itemsContainer;
+let itemsContainer;
 
 export default {
   name: "App",
@@ -83,6 +84,8 @@ export default {
       // 離開 loader 頁面.
       isLoaderLeave: false,
 
+      // items-container 是否有 transition 動畫.
+      isTransition: false,
       // items-container 滑鼠左鍵按下時的 x 座標.
       itemsContainerMousedownX: 0,
       // items-container 滑移動的距離.
@@ -91,8 +94,6 @@ export default {
       itemsContainerOffsetLeft: 0,
       // items-container 需要移動到的 left.
       itemsContainerLeft: 0,
-      // items-container 是否有 transition 動畫.
-      isTransition: false,
     };
   },
   computed: {
@@ -146,6 +147,9 @@ export default {
     },
     // 拖曳事件.
     windowMousemove(e) {
+      // chrome mousemove 重覆觸發 bug.
+      if (this.itemsContainerMousedownX === e.clientX) return false;
+
       // 紀錄滑鼠按下左鍵後移動的距離.
       this.itemsContainerMousemoveX = e.clientX - this.itemsContainerMousedownX;
       // 停止 item-container 的 transition 樣式.
@@ -176,22 +180,17 @@ export default {
 
       // 讓 menu nav 依照 index 調整 dom style.
       this.index = this.isActive;
-      // 刪除拖曳相關資料.
+      // 有確實拖放, 才給 item-container 加上動畫樣式.
+      if (this.itemsContainerMousemoveX !== 0) this.isTransition = true;
+      // 刪除拖放相關資料.
       this.itemsContainerMousedownX = this.itemsContainerMousemoveX = this.itemsContainerOffsetLeft = 0;
-      // item-container 加上動畫樣式.
-      this.isTransition = true;
       // 設置 item-container left 樣式.
       this.setItemsContainerLeft();
     },
     // item-container 移動完後執行.
-    itemsContainerTransitionend(e) {
-      if (
-        // 事件函式非目標觸發, 禁止執行函式.
-        e.target !== itemsContainer ||
-        // 未離開 loader 頁面, 禁止執行函式.
-        !this.isLoaderLeave
-      )
-        return false;
+    itemsContainerTransitionend() {
+      // 未離開 loader 頁面, 禁止執行函式.
+      if (!this.isLoaderLeave) return false;
 
       // 移除動畫.
       this.isTransition = false;
@@ -202,10 +201,8 @@ export default {
         this.setPlayHandler();
     },
     // carousel-container transitionend 事件, 就是畫面上下切換.
-    carouselContainerTransitionend(e) {
+    carouselContainerTransitionend() {
       if (
-        // 事件函式非目標觸發, 禁止執行函式.
-        e.target !== carouselContainer ||
         // 畫面在 menu, 禁止執行函式.
         this.isMenu ||
         // 執行動畫後未切換頁面, 禁止執行函式.
@@ -216,10 +213,18 @@ export default {
       this.setPlayHandler();
     },
   },
-  components: { Menu, Nav, Loader, Whoweare, Ralphlauren, Bose, Bullittagency },
+  components: {
+    Menu,
+    Nav,
+    Loader,
+    Whoweare,
+    Ralphlauren,
+    Bose,
+    Bullittagency,
+    Adisseo,
+  },
   mounted() {
-    // 儲存 dom 變數, 使用在 transitionend 事件的判斷目標.
-    carouselContainer = this.$el.querySelector(".carousel-container");
+    // 在事件中獲取 itemsContainer.offsetLeft.
     itemsContainer = this.$el.querySelector(".items-container");
 
     // 假的讀取進度.
@@ -286,7 +291,7 @@ html {
   flex-wrap: nowrap;
 
   &.transition {
-    transition: left 0.4s ease-in;
+    transition: left 0.4s ease-out;
   }
 
   .module {

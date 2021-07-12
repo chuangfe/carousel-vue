@@ -1,19 +1,19 @@
-# carousel
+# Carousel Works
 
-## Project setup
-```
-npm install
-```
+## GitHub Pages
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+https://chuangfe.github.io/carousel-vue/dist
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Framework
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Vue
+
+## 說明
+
+- 目前只有測試 1440 \* 900 的解析度
+
+- 目前只有測試 Chrome Firefox
+
+## Copyright©
+
+http://www.blacknegative.com/#!/whoweare/
